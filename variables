@@ -1,0 +1,68 @@
+[data-padding-top="none"] { padding-top: var(--padding-vertical--none); }
+[data-padding-bottom="none"] { padding-bottom: var(--padding-vertical--none); }
+
+[data-padding-top="small"] { padding-top: var(--padding-vertical--small); }
+[data-padding-bottom="small"] { padding-bottom: var(--padding-vertical--small); }
+
+[data-padding-top="main"] { padding-top: var(--padding-vertical--main); }
+[data-padding-bottom="main"] { padding-bottom: var(--padding-vertical--main); }
+
+[data-padding-top="large"] { padding-top: var(--padding-vertical--large); }
+[data-padding-bottom="large"] { padding-bottom: var(--padding-vertical--large); }
+
+
+
+:root {
+	--site--margin: 3rem;
+	--size--2rem: 2rem;
+	--size--2-5rem: 2.5rem;
+	--size--3rem: 3rem;
+	--size--3-5rem: 3.5rem;
+	--size--4rem: 4rem;
+	--size--4-5rem: 4.5rem;
+	--size--5rem: 5rem;
+	--size--5-5rem: 5.5rem;
+	--size--6rem: 6rem;
+	--size--6-5rem: 6.5rem;
+	--size--7rem: 7rem;
+	--size--7-5rem: 7.5rem;
+	--size--8rem: 8rem;
+	--size--8-5rem: 8.5rem;
+	--size--9rem: 9rem;
+	--size--9-5rem: 9.5rem;
+	--size--10rem: 10rem;
+	--size--11rem: 11rem;
+	--size--12rem: 12rem;
+	--size--13rem: 13rem;
+	--size--14rem: 14rem;
+	--size--15rem: 15rem;
+	--size--16rem: 16rem;
+}
+@media screen and (max-width: 767px) {
+	:root {
+		--site--margin: 1rem;
+		--size--2rem: 1.75rem;
+		--size--2-5rem: 2rem;
+		--size--3rem: 2.25rem;
+		--size--3-5rem: 2.375rem;
+		--size--4rem: 2.5rem;
+		--size--4-5rem: 2.75rem;
+		--size--5rem: 3rem;
+		--size--5-5rem: 3.25rem;
+		--size--6rem: 3.5rem;
+		--size--6-5rem: 3.75rem;
+		--size--7rem: 4rem;
+		--size--7-5rem: 4.25rem;
+		--size--8rem: 4.5rem;
+		--size--8-5rem: 4.75rem;
+		--size--9rem: 5rem;
+		--size--9-5rem: 5.25rem;
+		--size--10rem: 5.5rem;
+		--size--11rem: 5.75rem;
+		--size--12rem: 6rem;
+		--size--13rem: 6.5rem;
+		--size--14rem: 7rem;
+		--size--15rem: 7.5rem;
+		--size--16rem: 8rem;
+	}
+}
