@@ -1,0 +1,51 @@
+window.addEventListener("resize", function () {
+  var nav = document.querySelector(".navbar_component-transparent"); // Updated to .nav_menu
+
+  if (window.innerWidth > 768) {
+    // Assuming 768px is the breakpoint between desktop and iPad views
+    nav.style.transition = ""; // This will remove the transition style for desktop view
+    nav.style.transform = ""; // This will remove the transform style for desktop view
+  } else {
+    nav.style.transition = "height 0.3s ease 0s"; // This will restore the transition style for iPad view
+    nav.style.transform = "translateX(0px) translateY(0px)"; // This will restore the transform style for iPad view
+  }
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+  const navbar = document.querySelector(".navbar_component-transparent"); // Navbar class
+  const hamburger = document.querySelector(".w-nav-button"); // Webflow default hamburger menu class
+  let isAtTop = window.scrollY === 0;
+
+  // Function to toggle navbar-scrolled class based on scroll position
+  function handleScroll() {
+    isAtTop = window.scrollY === 0;
+    if (!isAtTop) {
+      navbar.classList.add("navbar-scrolled");
+    } else if (!hamburger.classList.contains("w--open")) {
+      navbar.classList.remove("navbar-scrolled");
+    }
+  }
+
+  // Handle resize and reset the navbar if necessary
+  function handleResize() {
+    if (window.scrollY === 0) {
+      navbar.classList.remove("navbar-scrolled"); // Reset class when resized and at top
+    }
+  }
+
+  // Add event listener for hamburger menu click
+  hamburger.addEventListener("click", function () {
+    if (isAtTop) {
+      navbar.classList.toggle("navbar-scrolled");
+    }
+  });
+
+  // Add scroll event listener
+  window.addEventListener("scroll", handleScroll);
+
+  // Add resize event listener
+  window.addEventListener("resize", handleResize);
+
+  // Initial call to handleScroll to check initial state
+  handleScroll();
+});
