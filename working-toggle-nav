@@ -1,0 +1,90 @@
+document.addEventListener("DOMContentLoaded", function () {
+  const transparentNavbar = document.querySelector(
+    ".navbar_component-transparent"
+  );
+  const staticNavbar = document.querySelector(".navbar_component-static");
+  const hamburger = document.querySelector(".w-nav-button");
+  const navMenu = document.querySelector(".navbar_menu");
+  const scrollOffset = 50;
+
+  function handleTransparentScroll() {
+    const isPastOffset = window.scrollY > scrollOffset;
+    if (transparentNavbar) {
+      transparentNavbar.classList.toggle("navbar-scrolled", isPastOffset);
+    }
+  }
+
+  function handleMenuToggle(isMenuOpen) {
+    const isPastOffset = window.scrollY > scrollOffset;
+
+    if (transparentNavbar) transparentNavbar.classList.toggle("menu-open", isMenuOpen);
+    if (staticNavbar) staticNavbar.classList.toggle("menu-open", isMenuOpen);
+
+    if (transparentNavbar) {
+      if (isMenuOpen && !isPastOffset) {
+        transparentNavbar.classList.add("navbar-scrolled");
+      } else if (!isMenuOpen && !isPastOffset) {
+        transparentNavbar.classList.remove("navbar-scrolled");
+      }
+    }
+
+    // Apply transition changes
+    [transparentNavbar, staticNavbar].forEach(navbar => {
+      if (navbar) {
+        navbar.style.transition = isMenuOpen ? "none" : "";
+        requestAnimationFrame(() => {
+          navbar.style.transition = "";
+        });
+      }
+    });
+  }
+
+  function handleResize() {
+    const isDesktop = window.innerWidth > 768;
+    [transparentNavbar, staticNavbar].forEach(navbar => {
+      if (navbar) {
+        if (isDesktop) {
+          navbar.style.transition = "";
+          navbar.style.transform = "";
+        } else {
+          navbar.style.transition = "height 0.3s ease 0s";
+          navbar.style.transform = "translateX(0px) translateY(0px)";
+        }
+      }
+    });
+
+    if (transparentNavbar) handleTransparentScroll();
+  }
+
+  const observer = new MutationObserver(mutations => {
+    mutations.forEach(mutation => {
+      if (mutation.attributeName === "data-nav-menu-open") {
+        const isMenuOpen = navMenu.hasAttribute("data-nav-menu-open");
+        handleMenuToggle(isMenuOpen);
+      }
+    });
+  });
+
+  observer.observe(navMenu, {
+    attributes: true,
+    attributeFilter: ["data-nav-menu-open"],
+  });
+
+  // Initial setup
+  handleResize();
+  if (transparentNavbar) handleTransparentScroll();
+
+  // Event listeners
+  if (transparentNavbar) {
+    window.addEventListener("scroll", handleTransparentScroll);
+  }
+  window.addEventListener("resize", handleResize);
+
+  // Add click event listener to hamburger
+  if (hamburger) {
+    hamburger.addEventListener("click", () => {
+      const isMenuOpen = navMenu.hasAttribute("data-nav-menu-open");
+      handleMenuToggle(!isMenuOpen);  // Toggle the menu state
+    });
+  }
+});
